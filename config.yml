@@ -1,0 +1,16 @@
+logging:
+  level: INFO
+  loggers:
+    com.fantasycup: DEBUG
+
+#cache: # Redis server configuration for cache cluster;redis://HOST[:PORT][?db=DATABASE[&password=PASSWORD]]
+#  url: redis://localhost:6379
+
+database: # Postgresql database configuration for message store; url => jdbc:postgresql://localhost/<database>
+  driverClass: org.postgresql.Driver
+  user: postgres
+  password: postgres
+  url: jdbc:postgresql://localhost/FantasyCup
+##swagger implementation
+swagger:
+  resourcePackage: com.fantasycup.resources

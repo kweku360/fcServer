@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="kkankam">
+        <createTable tableName="game">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <!--Game Name-->
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <!--Game type - Simple /Custom /Inhouse-->
+            <column name="type" type="varchar(255)" defaultValue="simple">
+                <constraints nullable="false"/>
+            </column>
+            <!--Duration - Week  / Month / Season-->
+            <column name="duration" type="varchar(255)" defaultValue="week">
+                <constraints nullable="false"/>
+            </column>
+            <!--current gameweek -->
+            <column name="eventid" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <!--playercount - players joined so far-->
+            <column name="playercount" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <!--maxplayers - 0 for infinite-->
+            <column name="maxplayers" type="bigint" defaultValue="100">
+                <constraints nullable="false"/>
+            </column>
+            <!--entry fee -->
+            <column name="entryfee" type="double">
+                <constraints nullable="false"/>
+            </column>
+            <!--GameTax - in percentage-->
+            <column name="gametax" type="double">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="kkankam">
+        <createTable tableName="player">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <!--player Code-->
+            <column name="code" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <!--Email-->
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <!--First Name-->
+            <column name="firstname" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <!--Last Name -->
+            <column name="lastname" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <!--datejoined-->
+            <column name="datejoined" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <!--walletid-->
+            <column name="walletid" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="kkankam">
+        <createTable tableName="playeraccount">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <!--Playeremail-->
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <!--credential-->
+            <column name="credential" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <!--fplteamcode-->
+            <column name="fplteamcode" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <!--team name-->
+            <column name="teamname" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <!--fullname-->
+            <column name="fullname" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <!--region-->
+            <column name="region" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <!--region code-->
+            <column name="regioncode" type="varchar(8)">
+                <constraints nullable="false"/>
+            </column>
+            <!--eplteam-->
+            <column name="eplteam" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <!--lastmodified-->
+            <column name="lastmodified" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <!--datejoined-->
+            <column name="datejoined" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="kkankam">
+        <createTable tableName="playerdata">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <!--Player Account Id-->
+            <column name="playeraccid" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <!--Points-->
+            <column name="points" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <!--Total Transfer Count-->
+            <column name="totaltransfers" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <!--transfer cost-->
+            <column name="transfercost" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <!--chip played - chip name / or code-->
+            <column name="chipplayed" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <!--benchpoints-->
+            <column name="benchpoints" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <!--GameWeekNumber-->
+            <column name="event" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <!--last modified-->
+            <column name="lastmodified" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="5" author="kkankam">
+        <createTable tableName="playerdatadump">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <!--Player Account Id-->
+            <column name="playeraccid" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <!--data-->
+            <column name="data" type="json">
+                <constraints nullable="true"/>
+            </column>
+            <!--last modified-->
+            <column name="lastmodified" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="6" author="kkankam">
+        <createTable tableName="playergame">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <!--Game Id-->
+            <column name="gameid" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <!--Player Data-->
+            <column name="gameplayers" type="json">
+                <constraints nullable="false"/>
+            </column>
+            <!--Pot-->
+            <column name="gamepot" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <!--Event Id-->
+            <column name="eventid" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <!--last modified-->
+            <column name="lastmodified" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <!--Date Created-->
+            <column name="datecreated" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="7" author="kkankam">
+        <createTable tableName="playerwallet">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <!--Player Account Id-->
+            <column name="playercode" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <!--balance-->
+            <column name="balance" type="double">
+                <constraints nullable="false"/>
+            </column>
+            <!--currency-->
+            <column name="currencyid" type="varchar(8)">
+                <constraints nullable="false"/>
+            </column>
+            <!--transactions-->
+            <column name="transactions" type="json">
+                <constraints nullable="false"/>
+            </column>
+            <!--last modified-->
+            <column name="lastmodified" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="8" author="kkankam">
+        <createTable tableName="transactions">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <!--transaction date time-->
+            <column name="transactiondatetime" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <!--Transaction Amount-->
+            <column name="amount" type="double">
+                <constraints nullable="false"/>
+            </column>
+            <!--Previous Balance-->
+            <column name="previousbalance" type="double">
+                <constraints nullable="false"/>
+            </column>
+            <!--Current Balance-->
+            <column name="currentbalance" type="double">
+                <constraints nullable="false"/>
+            </column>
+            <!--currency-->
+            <column name="currencyid" type="varchar(8)">
+                <constraints nullable="false"/>
+            </column>
+            <!--Wallet Id-->
+            <column name="walletid" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <!--transaction details-->
+            <column name="details" type="json">
+                <constraints nullable="true"/>
+            </column>
+            <!--last modified-->
+            <column name="lastmodified" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="9" author="kkankam">
+        <createTable tableName="event">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <!--Number-->
+            <column name="number" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <!--Event Deadline-->
+            <column name="deadline" type="timestamp">
+                <constraints nullable="true"/>
+            </column>
+            <!--Status 0 = pending , 1 = ongoing 2 = ended-->
+            <column name="status" type="smallint">
+                <constraints nullable="true"/>
+            </column>
+            <!--Month -for Monthly events-->
+            <column name="month" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <!--last modified-->
+            <column name="lastmodified" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <!--Date Created-->
+            <column name="datecreated" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
